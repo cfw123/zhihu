@@ -13,9 +13,9 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+//Route::middleware('auth:api')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
 
 
 //Route::get('users',function(){
@@ -27,3 +27,18 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('users',function(){
     return response()->json(['data'=>['id'=>1,'name'=>'张三'],'code'=>200]);
 })->middleware('auth:api');
+
+
+
+Route::group([
+
+    'prefix' => 'auth'
+
+], function ($router) {
+
+    Route::post('login', 'AuthController@login');
+    Route::post('logout', 'AuthController@logout');
+    Route::post('refresh', 'AuthController@refresh');
+    Route::post('me', 'AuthController@me');
+
+});
