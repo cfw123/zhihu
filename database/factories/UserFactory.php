@@ -17,5 +17,8 @@ $factory->define(App\Models\User::class, function (Faker $faker) {
     return [
         'username' => $faker->name,
         'password' => bcrypt('admin'),
+
+
+
     ];
 });
